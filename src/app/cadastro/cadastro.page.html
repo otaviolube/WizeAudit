@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" name="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" name="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Confirmar senha</ion-label>
+      <ion-input type="password" name="password"></ion-input>
+    </ion-item>
+    <ion-text class="ion-text-right">
+      <p></p>
+    </ion-text>
+    <ion-button (click)="realizarCadastro()" expand="full" color="primary">Realizar cadastro</ion-button>
+  </form>
+  <ion-row style="height: 30px"></ion-row>
+  <ion-button expand="full" color="primary">
+    <ion-icon slot="start" name="logo-facebook"></ion-icon>
+    Cadastro com o Facebook
+  </ion-button>
+  <ion-button expand="full" color="danger">
+    <ion-icon slot="start" name="logo-googleplus"></ion-icon>
+    Cadastro com o Google
+  </ion-button>
+  <ion-text class="ion-text-center">
+    <p></p>
+  </ion-text>
+
+  <ion-img src="../../assets/wize-logo.png" style="height: 100px"></ion-img>
+
+</ion-content>
