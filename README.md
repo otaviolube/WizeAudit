@@ -1,2 +1,0 @@
-# WizeAudit
-WizeAudit
