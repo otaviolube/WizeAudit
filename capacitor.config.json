@@ -1,0 +1,7 @@
+{
+  "appId": "education.mindtech",
+  "appName": "WizeAudit",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

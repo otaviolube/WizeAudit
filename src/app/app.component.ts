@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
-import { Platform, LoadingController, NavController } from '@ionic/angular';
+import { Platform, LoadingController, NavController, ToastController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  private loading: any;
 
   public appPages = [
     {
@@ -30,22 +33,38 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private loadingController: LoadingController,
-    private navController: NavController
+    private navController: NavController,
+    private authService: AuthService,
+    private toastController: ToastController
   ) {
     this.initializeApp();
   }
 
-  doLogout(){
-    this.loadingController.create({
-      message: 'Saindo ...',
-      duration: 3000
-    }).then((res) => {
-      res.present();
-      res.onDidDismiss().then((dis) => {
-        //Acessamos a aplicação
-        this.navController.navigateBack("");
-      })
+  async doLogout(){
+    await this.presentLoading();
+    try {
+      await this.authService.logout();
+    } catch (error) {
+      console.log(error);
+      this.presentToast(error);
+    } finally {
+      this.loading.dismiss();
+    }
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: "Saind ..."
+    })
+    return this.loading.present();
+  }
+
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000
     });
+    toast.present();
   }
 
   initializeApp() {
